@@ -162,8 +162,6 @@ void resolve_auto() {
             y++;
             x = 0;
         }
-
-
     }
     printf("\n\tMatrice resolue en %d calculs ! \n", cpt);
     wait_for_enter();

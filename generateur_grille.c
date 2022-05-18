@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "test_matrices.h"
-
+#include "affichage.h"
 int *int_to_bin(int nombre, int size) {
     int *code_binaire = (int *) malloc(sizeof(int) * size);
     int i;
@@ -80,13 +80,15 @@ int **generer_grille(int size){
     }
 
     // on place quelques valeurs de facon random dans la grille afin d'obtenir des grilles différentes a chaque génération
+
     for (i = 0; i < 3; i++) {
         int x = rand() % size;
         int y = rand() % size;
         int val = rand() % 2;
-        grid[y][x] = val;
+        if (verif_valide_gen(grid, y,x, size, val) == 1){
+            grid[y][x] = val;
+        }
     }
-
     gen_grid(grid, 0, size); // génére la grille au moyen de la fonction récursive gen_grid()
 
     return grid;
@@ -94,7 +96,7 @@ int **generer_grille(int size){
 
 
 int gen_grid(int **grille, int pos, int size) {
-
+    //afficher_matrice(grille,size);
     if (pos == size * size)
         return 1;
 
@@ -103,7 +105,7 @@ int gen_grid(int **grille, int pos, int size) {
         return gen_grid(grille, pos + 1, size);
 
     for (int k = 0; k <= 1; k++) {
-        if (verif_valide_gen(grille, (COORDS) {i, j}, size, k) == 1) {
+        if (verif_valide_gen(grille, i, j, size, k) == 1) {
             grille[i][j] = k;
             if (gen_grid(grille, pos + 1, size) == 1)
                 return 1;

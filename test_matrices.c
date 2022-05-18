@@ -9,22 +9,22 @@
 #include "test_matrices.h"
 
 
-int verif_valide_gen(int **grille_jeu, COORDS coords, int size, int val) {
+int verif_valide_gen(int **grille_jeu, int i, int j, int size, int val) {
     int temp;
 
-    temp = ligne_remplie(coords.i, grille_jeu, size);
+    temp = ligne_remplie(i, grille_jeu, size);
     if ((temp != -1) && ((temp + 1) % 2 != val)) return -1;
 
-    temp = colonne_remplie(coords.j, grille_jeu, size);
+    temp = colonne_remplie(j, grille_jeu, size);
     if ((temp != -1) && ((temp + 1) % 2 != val)) return -2;
 
-    temp = test_suite(coords.i, coords.j, grille_jeu, size);
+    temp = test_suite(i, j, grille_jeu, size);
     if ((temp != -1) && ((temp + 1) % 2 != val)) return -3;
 
-    temp = test_autour(coords.i, coords.j, grille_jeu, size);
+    temp = test_autour(i, j, grille_jeu, size);
     if ((temp != -1) && ((temp + 1) % 2 != val)) return -4;
 
-    if (test_lignes_id(coords.i, grille_jeu, size) != -1) return -5;
+    if (test_lignes_id(i, grille_jeu, size) != -1) return -5;
 
     return 1;
 }
@@ -134,6 +134,7 @@ int test_remplissage(int **tab, int size) {
 
 int verif_tab_id(int *tab1, int *tab2, int size) {
     for (int i = 0; i < size; i++) {
+        if (tab1[i] == -1) return 0;
         if (tab1[i] != tab2[i])return 0;
     }
     return 1;

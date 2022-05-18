@@ -31,7 +31,7 @@ int verif_grille(int **grille_jeu, int **grille_soluc, int size);
 
 int verif_valide(int **grille_jeu, COORDS coords, int size, int val);
 
-int verif_valide_gen(int **grille_jeu, COORDS coords, int size, int val);
+int verif_valide_gen(int **grille_jeu, int i, int j, int size, int val);
 
 //int grille_valide(int** grille, int size);
 int verif_tab_id(int *tab1, int *tab2, int size);

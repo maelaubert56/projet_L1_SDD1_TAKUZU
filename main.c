@@ -14,7 +14,7 @@
 #include "resolution.h"
 #include "generateur_grille.h"
 #include <math.h>
-
+#include "time.h"
 
 #include "fonctions_utilitaires.h"
 
@@ -30,6 +30,7 @@ int menu_generer_grille();
 
 
 int main() {
+    srand(time(NULL)); // initialise le random
     int choix, continuer = 1;
     color(15, 0);
     while (continuer == 1) {
